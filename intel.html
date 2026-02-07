@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Tselmuun 💖</title>
+
+  <style>
+    :root {
+      --pink: #ff6fae;
+      --purple: #7b6cff;
+      --bg: #0f1020;
+      --card: #171832;
+      --text: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #2a2b5f, var(--bg));
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: linear-gradient(180deg, #1e1f44, var(--card));
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,.4);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: clamp(26px, 6vw, 34px);
+    }
+
+    h1 span {
+      color: var(--pink);
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.6;
+      opacity: .95;
+    }
+
+    .heart {
+      font-size: 56px;
+      margin: 12px 0;
+      animation: beat 1.3s infinite;
+    }
+
+    @keyframes beat {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 10px;
+      border-radius: 14px;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      background: linear-gradient(90deg, #ffd1e6, var(--pink));
+      color: #0f1020;
+    }
+
+    .secondary {
+      background: transparent;
+      color: white;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    .output {
+      margin-top: 16px;
+      min-height: 48px;
+      font-size: 14px;
+    }
+
+    .confetti {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .confetti span {
+      position: absolute;
+      width: 8px;
+      height: 12px;
+      border-radius: 2px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Happy Birthday, <span>Tselmuun</span> 🎂</h1>
+
+    <div class="heart">💖</div>
+
+    <p>
+      Today is all about you.  
+      Thank you for being you and making my world brighter.
+    </p>
+
+    <button onclick="celebrate()">Celebrate 🎉</button>
+    <button class="secondary" onclick="message()">Message 💌</button>
+    <button class="secondary" onclick="compliment()">Compliment ✨</button>
+    <button class="secondary" onclick="surprise()">Surprise 🥰</button>
+
+    <div class="output" id="output"></div>
+  </div>
+
+  <div class="confetti" id="confetti"></div>
+
+  <script>
+    const output = document.getElementById("output");
+    const confetti = document.getElementById("confetti");
+
+    const compliments = [
+      "You make everything better just by being there.",
+      "You’re the most beautiful person I know — inside and out.",
+      "I’m so lucky to have you.",
+      "You’re my favorite human 💕"
+    ];
+
+    function celebrate() {
+      output.textContent = "🎉 Today we celebrate YOU!";
+      launchConfetti(80);
+    }
+
+    function message() {
+      output.textContent =
+        "No matter what happens, I’ll always be cheering for you 💖";
+    }
+
+    function compliment() {
+      output.textContent =
+        "✨ " + compliments[Math.floor(Math.random() * compliments.length)];
+    }
+
+    function surprise() {
+      output.textContent =
+        "💗 I love you, Tselmuun. Today, tomorrow, always.";
+      launchConfetti(140);
+    }
+
+    function launchConfetti(count) {
+      confetti.innerHTML = "";
+      const colors = ["#ff6fae", "#ffd1e6", "#7b6cff", "#ffffff"];
+
+      for (let i = 0; i < count; i++) {
+        const piece = document.createElement("span");
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.top = "-10px";
+        piece.style.background =
+          colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration = 2 + Math.random() * 2 + "s";
+        confetti.appendChild(piece);
+      }
+    }
+  </script>
+
+</body>
+</html>
